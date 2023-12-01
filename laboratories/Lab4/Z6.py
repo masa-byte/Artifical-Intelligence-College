@@ -45,8 +45,8 @@ def calculate_heuristics(dest_i, dest_j, i, j):
 
 if __name__ == "__main__":
     n = 4
-    start_i = 0
-    start_j = 0
+    start_i = 1
+    start_j = 2
     dest_i = 2
     dest_j = 1
     red_i = [1, 3]
@@ -73,19 +73,6 @@ if __name__ == "__main__":
     # green node
     graph[dest_i][dest_j].color = "green"
     graph[dest_i][dest_j].heuristics = 0
-
-    for i in range(n):
-        for j in range(n):
-            if graph[i][j].color == "red":
-                continue
-            if i < n - 1 and graph[i + 1][j].color != "red":
-                graph[i][j].add_edge(graph[i + 1][j], 1)  # Edge down
-            if i > 0 and graph[i - 1][j].color != "red":
-                graph[i][j].add_edge(graph[i - 1][j], 1)  # Edge up
-            if j < n - 1 and graph[i][j + 1].color != "red":
-                graph[i][j].add_edge(graph[i][j + 1], 1)  # Edge right
-            if j > 0 and graph[i][j - 1].color != "red":
-                graph[i][j].add_edge(graph[i][j - 1], 1)  # Edge left
 
     visualize_graph(graph)
 

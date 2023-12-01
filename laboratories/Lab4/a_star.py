@@ -1,3 +1,18 @@
+def determine_node_edges(graph, node):
+    i = node.i
+    j = node.j
+    n = graph.shape[0]
+    if graph[i][j].color == "red":
+        return
+    if i < n - 1 and graph[i + 1][j].color != "red":
+        graph[i][j].add_edge(graph[i + 1][j], 1)  # Edge down
+    if i > 0 and graph[i - 1][j].color != "red":
+        graph[i][j].add_edge(graph[i - 1][j], 1)  # Edge up
+    if j < n - 1 and graph[i][j + 1].color != "red":
+        graph[i][j].add_edge(graph[i][j + 1], 1)  # Edge right
+    if j > 0 and graph[i][j - 1].color != "red":
+        graph[i][j].add_edge(graph[i][j - 1], 1)  # Edge left
+
 def a_star(graph, start, end):
     found_end = False
     open_set = set([start])
@@ -19,6 +34,8 @@ def a_star(graph, start, end):
                 if node == end:
                     found_end = True
                     break
+
+        determine_node_edges(graph, node)
 
         for m, cost in graph[node.i][node.j].edges:
             if m not in open_set and m not in closed_set:
