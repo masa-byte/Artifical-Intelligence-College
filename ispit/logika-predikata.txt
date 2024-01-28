@@ -1,0 +1,166 @@
+1. Svako koga Meri voli - je fudbalska zvezda.
+2. Svaki student koji ne polozi ispit - ne igra fudbal.
+3. Jovan je student.
+4. Svaki student koji ne uci - ne polaze ispite.
+5. Ko ne igra fudbal - nije fudbalska zvezda.
+
+KONSTANTE: Meri, Jovan, ispit, fudbal
+
+PREDIKATI: voli, fudbalska_zvezda, polozi, student, uci, igra
+
+voli(x, y)
+fudbalska_zvezda(x)
+polozi(x)
+student(x)
+uci(x)
+igra(x)
+∀, ∃, ∈
+
+1. ∀x voli(Meri, x) => fudbalska_zvezda(x)
+2. ∀x student(x) and not polozi(x) => not igra(x)
+3. student(Jovan)
+4. ∀x student(x) and not uci(x) => not polaze(x)
+5. ∀x not igra(x) => not fudbalska_zvezda(x)
+
+Prevodjenje u klauzalni oblik
+a) Elimisanje implikacije
+1. ∀x not voli(Meri, x) or fudbalska_zvezda(x)
+2. ∀x not (student(x) and not polozi(x)) or not igra(x)
+3. student(Jovan)
+4. ∀x not(student(x) and not uci(x)) or not polaze(x)
+5. ∀x not(not igra(x)) or not fudbalska_zvezda(x)
+
+b) Suzavanje delovanja negacije
+1. ∀x not voli(Meri, x) or fudbalska_zvezda(x)
+2. ∀x not student(x) or polozi(x) or not igra(x)
+3. student(Jovan)
+4. ∀x not student(x) or uci(x) or not polaze(x)
+5. ∀x igra(x) or not fudbalska_zvezda(x)
+
+c) standardizacija promenljivih
+d) eliminacija egzistencijalnog kvantifikatora
+e) eliminacija univerzalnog kvantifikatora
+1. not voli(Meri, x) or fudbalska_zvezda(x)
+2. not student(x) or polozi(x) or not igra(x)
+3. student(Jovan)
+4. not student(x) or uci(x) or not polaze(x)
+5. igra(x) or not fudbalska_zvezda(x)
+
+f) prevodjenje u konjuktivnu formu
+1. not voli(Meri, x) or fudbalska_zvezda(x)
+2. not student(x) or polozi(x) or not igra(x)
+3. student(Jovan)
+4. not student(x) or uci(x) or not polaze(x)
+5. igra(x) or not fudbalska_zvezda(x)
+
+g) eliminacija konjunkcije
+1. {not voli(Meri, x), fudbalska_zvezda(x)}
+2. {not student(x), polozi(x), not igra(x)}
+3. {student(Jovan)}
+4. {not student(x), uci(x), not polaze(x)}
+5. {igra(x), not fudbalska_zvezda(x)}
+
+zakljucak - Ako Jovan ne uci, onda Meri ne voli Jovana
+not uci(Jovan) => not voli(Meri, Jovan)
+uci(Jovan) or not voli(Meri, Jovan)
+6. {uci(Jovan), not voli(Meri, Jovan)}
+
+-------------------------
+1. {not voli(Meri, x), fudbalska_zvezda(x)}
+2. {not student(x), polozi(x), not igra(x)}
+3. {student(Jovan)}
+4. {not student(x), uci(x), not polazi(x)}
+5. {igra(x), not fudbalska_zvezda(x)}
+6. {not uci(Jovan), voli(Meri, Jovan)}
+
+1. i 5.
+7. {not voli(Meri, x), igra(x)}
+
+6. i 7.
+8. {not uci(Jovan), igra(x)}
+
+2. i 8.
+9. {not uci(Jovan), not student(x), polozi(x)}
+
+9. i 4.
+10. {not student(x)}
+
+10. i 3.
+x/Jovan
+{} - kraj
+
+
+///////////////////////////////////
+∀, ∃, ∈
+1. Ako je x nadredjen y, onda je y podredjen x
+∀x ∃y nadredjen(x, y) => podredjen(y, x)
+
+2. Svaka zemlja ima glavni grad
+∀x zemlja(x) =>  ∃y glavnigrad(y) and ima(x, y)
+
+3. Glavni grad Srbije je Beograd.
+zemlja(Srbija) and glavnigrad(Beograd)
+
+4. Nije tacno da svaki srednjoskolac pusi
+∃x srednjoskolac(x) and not pusi(x)
+
+5. Kaput u Marijinom ormanu - pripada Nikoli
+∃x kaput(x) and orman(Marija, x) and pripada(x, Nikoli)
+
+6. Zoran je uradio nesto sto je naljutilo Anu
+∃x uradio(Zoran, x) and naljutilo(x, Anu) 
+
+1. {P(x), Q(x)}
+2. {not P(y), R(A)}
+3. {not Q(B), R(z)}
+4. {Q(w), not P(w)}
+5. {not R(x)}
+
+1. i 3. 
+x/B 
+6. {P(B), R(z)}
+
+2. i 6.
+y/B i z/A 
+7. {R(A)}
+
+7. i 5.
+x/A
+{} - Kraj
+
+∀x P(x) => ((∀y P(y) => P(f(x, y))) and not (∀y Q(x, y) => P(y)))
+
+1. 
+∀x not P(x) or ((∀y not P(y) or P(f(x, y))) and not (∀y not Q(x, y) or P(y)))
+
+2. 
+∀x not P(x) or ((∀y not P(y) or P(f(x, y))) and (∃y Q(x, y) and not P(y)))
+
+3. 
+∀x not P(x) or ((∀y not P(y) or P(f(x, y))) and (∃z Q(x, z) and not P(z)))
+
+4. 
+∀x not P(x) or ((∀y not P(y) or P(f(x, y))) and (Q(x, f(x)) and not P(f(x))))
+
+5. 
+not P(x) or ((not P(y) or P(f(x, y))) and (Q(x, f(x)) and not P(f(x))))
+
+6. 
+ㄱ P(x) ∨ ((ㄱ P(y) ∨ P(f(x, y))) ⋀ (Q(x, f(x)) ⋀ ㄱ P(f(x))))
+a or (b and c) => (a or b) and (a or c)
+a)(ㄱ P(x) ∨ (ㄱ P(y) ∨ P(f(x, y)))) ⋀ (ㄱ P(x) ∨ (Q(x, f(x)) ⋀ ㄱ P(f(x))))
+b)(ㄱ P(x) ∨ (Q(x, f(x)) ⋀ ㄱ P(f(x))))
+(ㄱ P(x) ∨ Q(x, f(x))) ⋀ (ㄱ P(x) ∨ ㄱ P(f(x)))
+
+7. 
+(ㄱ P(x) ∨ ㄱ P(y) ∨ P(f(x, y)))
+->{ㄱ P(x), ㄱ P(y), P(f(x, y))}
+
+(ㄱ P(x) ∨ Q(x, f(x))) 
+->{ㄱ P(x), Q(x, f(x))}
+(ㄱ P(x) ∨ ㄱ P(f(x)))
+->{ㄱ P(x), ㄱ P(f(x))}
+
+{ㄱ P(x1), ㄱ P(y1), P(f(x1, y1))}
+{ㄱ P(x2), Q(x2, f(x2))}
+{ㄱ P(x3), ㄱ P(f(x3))}
